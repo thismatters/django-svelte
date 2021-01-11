@@ -4,7 +4,7 @@ Incorporate a Svelte frontend into a Django site with minimal impact to deployme
 
 ## Scope
 
-This package mainly consists of a templatetag which facilitates the import of the js/css bundle created by Svelte/Rollup/Node.js into your template. For this package to be useful you will also need the Svelte/Rollup/Node.js which produces the js/css bundle; consider using the accompanying project [svelte-django](https://github.com/thismatters/svelte-django/) as a starting point for your Svelte frontend. It has been modified to work easily alongside this package. If you run into any problems see the [django-svelte-demo](https://github.com/thismatters/django-svelte-demo) for an example of these two projects working together.
+This package mainly consists of a templatetag which facilitates the import of the js/css bundle created by Svelte/Rollup/Node.js into your template. For this package to be useful you will also need the Svelte/Rollup/Node.js which produces the js/css bundle; consider using the accompanying project [django-svelte-template](https://github.com/thismatters/django-svelte-template/) as a starting point for your Svelte frontend. It has been modified to work easily alongside this package. If you run into any problems see the [django-svelte-demo](https://github.com/thismatters/django-svelte-demo) for an example of these two projects working together.
 
 ## Installation
 
@@ -52,7 +52,7 @@ You can optionally pass some context (specifically a `dict`) to the component:
 
 ## What about the Svelte!?
 
-The Svelte side of things is dealt with in the [svelte-django](https://github.com/thismatters/svelte-django/) repo which you can use as a starting point for your Svelte projects (using `npx degit thismatters/svelte-django svelte`). It is configured to output js/css bundles for several different components, but you'll have to do some setup so be sure to read the README.
+The Svelte side of things is dealt with in the [django-svelte-template](https://github.com/thismatters/django-svelte-template/) repo which you can use as a starting point for your Svelte projects (using `npx degit thismatters/django-svelte-template svelte`). It is configured to output js/css bundles for several different components, but you'll have to do some setup so be sure to read the README.
 
 ## Devops concerns
 
