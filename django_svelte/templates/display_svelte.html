@@ -1,0 +1,16 @@
+
+{% comment %}
+Create a target element
+load the compiled bundle
+instantiate the bundle with the json context
+{% endcomment %}
+{% load static %}
+{% block svelte_styles %}
+    {# {{ block.super }} #}
+    <link href="{% static 'App.css' %}" rel="stylesheet">
+{% endblock %}
+
+<div id="{{ element_id }}"></div>
+
+{{ props|json_script:props_name }}
+<script type="text/javascript" src="{{ bundle_url }}"></script>
