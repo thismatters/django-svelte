@@ -5,7 +5,7 @@ setup(
     author="Paul Stiverson",
     url="https://github.com/thismatters/django-svelte/",
     download_url="https://pypi.org/project/django-svelte/",
-    version="0.1.0",
+    version="0.1.1",
     packages=["django_svelte"],
     license="MIT",
     description="Facilitates adding Svelte frontend to Django",
