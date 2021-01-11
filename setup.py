@@ -1,14 +1,18 @@
 from setuptools import setup
 
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
 setup(
     name="django-svelte",
     author="Paul Stiverson",
     url="https://github.com/thismatters/django-svelte/",
-    download_url="https://pypi.org/project/django-svelte/",
     version="0.1.1",
     packages=["django_svelte"],
     license="MIT",
     description="Facilitates adding Svelte frontend to Django",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     python_requires=">=3.7.4",
     classifiers=[
         "Development Status :: 4 - Beta",
