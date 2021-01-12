@@ -57,3 +57,9 @@ The Svelte side of things is dealt with in the [django-svelte-template](https://
 ## Devops concerns
 
 So, this isn't magic. For this to work you will need to have Node.js _somewhere_ in the mix. Fortunately, you won't need Node.js running in your production environment, but you will need it somewhere in your CI pipeline and probably in your dev environment. For a practical example of what this might look like for a production environment see [django-svelte-demo](https://github.com/thismatters/django-svelte-demo).
+
+## Shoutouts
+
+This work is inspired by the sentiments of [Owais Lone's writing](https://owais.lone.pw/blog/modern-frontends-with-django/) about the limitations of Django's frontend.
+
+This work takes some technical direction from [a blog series on cbsofyalioglu](https://www.cbsofyalioglu.com/post/django-and-modern-js-libraries-svelte/). These references were immensely helpful in fleshing out this integration.
