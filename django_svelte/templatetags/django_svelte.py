@@ -14,6 +14,10 @@ def display_svelte(component, component_props={"name": "world"}):
     rollup_setting = getattr(settings, "DJANGO_SVELTE_ROLLUP_CSS", None)
 
     if rollup_setting is not None:
+        
+        # Guard against misconfigured settings files
+        rollup_setting = "/static" + rollup_setting.replace("/static", "")
+
         context = {
             "bundle_url": staticfiles_storage.url(f"{app_name}.js"),
             "css_bundle_url": staticfiles_storage.url(f"{app_name}.css"),
