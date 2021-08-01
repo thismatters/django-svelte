@@ -68,7 +68,7 @@ DJANGO_SVELTE_ROLLUP_CSS="/build/bundle.css"
 # Additional pre-rendered Svelte static files to be used
 STATICFILES_DIRS = [
     BASE_DIR.parent / "svelte" / "public" / "build",
-    BASE_DIR.parent / "svelte" / "public
+    BASE_DIR.parent / "svelte" / "public"
 ]
 ```
 
