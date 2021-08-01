@@ -6,8 +6,27 @@ instantiate the bundle with the json context
 {% endcomment %}
 {% load static %}
 {% block svelte_styles %}
+    {# 
+    Adding additional CSS from bundling rollup.config.js
+    
+    It should be fine to include this before `{{ css_bundle_url }}` 
+    since any globally-registered names can be overriden by 
+    component-specific entries. 
+    #}
+    
+    {% if css_bundle_url_ext %}
+        <link href="{{ css_bundle_url_ext|default:'/build/bundle.css' }}" rel="stylesheet">
+    {% endif %}
+
+    {# 
+    Standard case where CSS file shares a base
+    file with the component.
+    #}
     {# {{ block.super }} #}
+    
     <link href="{{ css_bundle_url }}" rel="stylesheet">
+
+
 {% endblock %}
 
 <div id="{{ element_id }}"></div>

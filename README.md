@@ -50,6 +50,28 @@ You can optionally pass some context (specifically a `dict`) to the component:
 {% display_svelte "MySpecialComponent.svelte" component_props %}
 ```
 
+### Rollup's `/public/build` directory
+
+> Notice: If your CSS appears to be missing and you are using Rollup, you might need to do these two extra steps.
+
+Create the `DJANGO_SVELTE_ROLLUP_CSS` variable in `settings.py` and set it equal to the URI seeded by the bundle
+(i.e. `DJANGO_SVELTE_ROLLUP_CSS="/build/bundle.css"`). This gets used during the `display_svelte` invocation to generate
+a singleton `link` tag.
+
+Additionally, you'll need to make sure it is in the `STATICFILES_DIRS` list so that the file can be served. For example, your adjusted `settings.py` file
+might look like:
+
+```py
+# Rollup build CSS
+DJANGO_SVELTE_ROLLUP_CSS="/build/bundle.css"
+
+# Additional pre-rendered Svelte static files to be used
+STATICFILES_DIRS = [
+    BASE_DIR.parent / "svelte" / "public" / "build",
+    BASE_DIR.parent / "svelte" / "public
+]
+```
+
 ## What about the Svelte!?
 
 The Svelte side of things is dealt with in the [django-svelte-template](https://github.com/thismatters/django-svelte-template/) repo which you can use as a starting point for your Svelte projects (using `npx degit thismatters/django-svelte-template svelte`). It is configured to output js/css bundles for several different components, but you'll have to do some setup so be sure to read the README.
