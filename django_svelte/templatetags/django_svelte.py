@@ -1,3 +1,4 @@
+from os import path
 from django import template
 from django.contrib.staticfiles.storage import staticfiles_storage
 
@@ -18,4 +19,8 @@ def display_svelte(component, component_props={"name": "world"}):
         "app_name": app_name,
         "props": component_props,
     }
+
+    if not path.exists(context["css_bundle_url"]):
+        context.pop("css_bundle_url")
+
     return context
