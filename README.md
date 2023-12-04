@@ -41,14 +41,23 @@ To use a Svelte component within your Django template load the `django_svelte` t
 
 ...
 
-{% display_svelte "MySpecialComponent.svelte" %}
+{% display_svelte "MySpecialComponent" %}
 ```
 
-You can optionally pass some context (specifically a `dict`) to the component:
+You can optionally pass some context (specifically a JSON serializable `dict`) to the component:
+
+```
+{% display_svelte "MySpecialComponent" component_props %}
+```
+
+Versions before 0.1.8 required using `.svelte` at the end of the component name, e.g.
 
 ```
 {% display_svelte "MySpecialComponent.svelte" component_props %}
 ```
+
+This is no longer required.
+
 
 ## What about the Svelte!?
 
