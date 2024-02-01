@@ -1,0 +1,17 @@
+{% load django_svelte %}
+
+<html>
+<head>
+    <title>django-svelting change</title>
+</head>
+<body>
+    This text is in the django template. Below is the vanilla svelte app with some basic props passed in from the context.
+    {% display_svelte "App" component_props %}
+
+    And we can have multiple different components (yes they ought to be different):
+    {% display_svelte "AuthComponent" %}
+
+    And we should be able to POST data as well!
+    {% display_svelte "PostComponent" %}
+</body>
+</html>

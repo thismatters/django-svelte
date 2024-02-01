@@ -1,0 +1,25 @@
+stages:
+  - pre-build
+  - build
+
+build-svelte:
+  stage: pre-build
+  image: node:current-alpine
+  script:
+    - cd svelte
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - svelte/public/build/
+
+build-app:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
+  script:
+    - echo "{\"auths\":{\"$CI_REGISTRY\":{\"username\":\"$CI_REGISTRY_USER\",\"password\":\"$CI_REGISTRY_PASSWORD\"}}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile Dockerfile --destination $CI_REGISTRY_IMAGE:latest
+  dependencies:
+    - build-svelte

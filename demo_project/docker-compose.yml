@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    environment:
+      - APP_ENV=dev
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./django_svelte_demo:/app/src
+      - ./svelte/public/build/:/app/svelte/public/build/
+    depends_on:
+      - node
+    networks:
+      - dev-net
+  node:
+    image: node:current-alpine
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+      - API_BASE_URL=localhost:8000
+    volumes:
+      - ./svelte:/home/node/app
+    command: "npm run dev"
+
+networks:
+  dev-net:
