@@ -39,7 +39,10 @@ async function send({ method, path, data }) {
         return json;
       }
     })
-    .catch(e => console.log(`[${e}]: ${url} with ${JSON.stringify(opts)} failed`));
+    .catch(e => {
+      console.log(`[${e}]: ${url} with ${JSON.stringify(opts)} failed`);
+      return {};
+    });
 }
 
 export function get(path) {

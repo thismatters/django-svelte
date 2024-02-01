@@ -1,6 +1,7 @@
 <script>
 import { get } from "./api.js";
 let isAuth = false;
+let didClick = false;
 
 async function handleClick() {
   console.log("clicked!");
@@ -8,6 +9,7 @@ async function handleClick() {
   if (res.sgood) {
     isAuth = true;
   }
+  didClick = true;
 }
 </script>
 
@@ -15,4 +17,6 @@ async function handleClick() {
 <button on:click="{handleClick}">Check Auth!</button>
 {#if isAuth}
   <h2>You're Auth!</h2>
+{:else if didClick}
+  <h2>You're not Auth!</h2>
 {/if}

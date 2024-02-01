@@ -9,10 +9,11 @@ async function handleClick() {
 }
 </script>
 
+<h1>POST something. make it good.</h1>
 
 <input type="text" name="fake-input" bind:value="{fakeInput}" />
 <button on:click="{handleClick}">POST it</button>
 {#if res}
-  {res.sgood ? "Sgood" : "Sbad"}
-  {res.did_post ? "did post!" : "didn't post :("}
+  <h2>{res.sgood ? "Good" : "Bad"}
+  {res.did_post ? "did post!" : "didn't post :("}</h2>
 {/if}

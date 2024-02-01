@@ -125,6 +125,10 @@ If you have many components that each get loaded as the main content of their ow
 
 Once you have `svelte_base.html` in place, a subsequent template like `svelte_component.html` is a convenient template for loading in a single component. If you're using the class based view approach describe above then this template should include a `{{ page_title }}` as well as the use of `{% display_svelte_css component_name %}` in the `head` of the template, and `{% display_svelte component_name %}` in its body. See the sample implementation in the demo project.
 
+## Use with `django-compressor`
+
+The setting `DJANGO_SVELTE_OFFLINE_COMPRESOR` will be of service if you're using `django-compressor` (in offline mode). Setting to `True` will cause `django-svelte` to look in the `django-compessor` manifest for the appropriate file URL rather than the default staticfiles.
+
 ## What about the Svelte!?
 
 The Svelte side of things is dealt with in the [django-svelte-template](https://github.com/thismatters/django-svelte-template/) repo which you can use as a starting point for your Svelte projects (using `npx degit thismatters/django-svelte-template svelte`). It is configured to output js/css bundles for several different components, but you'll have to do some setup so be sure to read the README.

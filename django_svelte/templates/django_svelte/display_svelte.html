@@ -1,13 +1,8 @@
-
 {% comment %}
 Create a target element
 load the compiled bundle
 instantiate the bundle with the json context
 {% endcomment %}
-{% load static %}
-{% block svelte_styles %}
-    <link href="{{ css_bundle_url }}" rel="stylesheet">
-{% endblock %}
 
 <div id="{{ element_id }}"></div>
 

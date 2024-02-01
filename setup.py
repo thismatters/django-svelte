@@ -15,6 +15,10 @@ setup(
     long_description_content_type="text/markdown",
     python_requires=">=3.8",
     include_package_data=True,
+    install_requires=[
+        "Django>=3.2.0",
+        "django-appconf>=1.0.0",
+    ],
     classifiers=[
         "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",
