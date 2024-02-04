@@ -126,5 +126,6 @@ STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "site_media" / "static"
 
 STATICFILES_DIRS = [
+    BASE_DIR / "static",
     BASE_DIR.parent / "svelte" / "public" / "build",
 ]

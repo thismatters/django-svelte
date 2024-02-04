@@ -1,3 +1,18 @@
 Django==5.0.1
+
+# demo dependencies
 djangorestframework==3.14.0
 drf-yasg==1.21.7
+
+# code quality
+black==24.1.1
+isort==5.13.2
+pyproject-flake8==6.1.0
+
+# basic testing
+pytest==8.0.0
+pytest-cov==4.1.0
+pytest-django==4.8.0
+
+# matrix testing
+tox==4.12.1

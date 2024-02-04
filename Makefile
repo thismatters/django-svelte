@@ -11,4 +11,4 @@ lint:
 	isort django_svelte
 	cd django_svelte && pflake8
 test:
-	DJANGO_SETTINGS_MODULE=django_svelte_demo.settings.test pytest --cov=mailinglist --cov-report term-missing tests/$(TEST_PATH)
+	DJANGO_SETTINGS_MODULE=django_svelte_demo.settings pytest --cov=django_svelte --cov-report term-missing tests/$(TEST_PATH)

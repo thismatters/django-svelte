@@ -4,4 +4,9 @@
 *.sqlite3
 *.log
 *.final
+*.egg-info/*
 
+
+.coverage
+coverage.xml
+.tox
