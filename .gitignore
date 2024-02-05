@@ -6,7 +6,6 @@
 *.final
 *.egg-info/*
 
-
 .coverage
 coverage.xml
 .tox

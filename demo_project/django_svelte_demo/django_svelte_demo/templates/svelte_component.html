@@ -1,0 +1,11 @@
+{% extends "svelte_base.html" %}
+{% load django_svelte %}
+
+{% block svelte_styles %}
+  {{ block.super }}
+  {% display_svelte_css component_name %}
+{% endblock %}
+
+{% block content %}
+  {% display_svelte component_name component_props %}
+{% endblock %}

@@ -8,7 +8,7 @@ from django_svelte_demo.api import views
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="svelted API",
+        title="Django-Svelte Demo API",
         default_version="v1",
         description="Some test endpoints to verify that auth works right",
     ),

@@ -3,11 +3,9 @@
 <html>
 <head>
   <title>django-svelting change</title>
-  {% block svelte_styles %}
-    {% display_svelte_css "App" %}
-    {% display_svelte_css "AuthComponent" %}
-    {% display_svelte_css "PostComponent" %}
-  {% endblock %}
+  {% display_svelte_css "App" %}
+  {% display_svelte_css "AuthComponent" %}
+  {% display_svelte_css "PostComponent" %}
 </head>
 <body>
   This text is in the django template. Below is the vanilla svelte app with some basic props passed in from the context.

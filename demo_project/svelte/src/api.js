@@ -1,3 +1,8 @@
+/*
+ * This is a really basic implementation of a fetch wrapper appropriate
+ *  for use with `django-svelte`. You'll be responsible for getting the
+ *  following variables set for your myriad environments.
+ */
 const base = "localhost:8000";
 const protocol = "http";
 

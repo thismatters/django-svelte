@@ -4,7 +4,7 @@ Incorporate a Svelte frontend into a Django site with minimal impact to deployme
 
 ## Scope
 
-This package mainly consists of a templatetag which facilitates the import of the js/css bundle created by Svelte/Rollup/Node.js into your template. For this package to be useful you will also need the Svelte/Rollup/Node.js which produces the js/css bundle; consider using the accompanying project [django-svelte-template](https://github.com/thismatters/django-svelte-template/) as a starting point for your Svelte frontend. It has been modified to work easily alongside this package. If you run into any problems see the [django-svelte-demo](https://github.com/thismatters/django-svelte-demo) for an example of these two projects working together.
+This package mainly consists of a templatetags which facilitate the import of the js/css bundle created by Svelte/Rollup/Node.js into your template. For this package to be useful you will also need the Svelte/Rollup/Node.js which produces the js/css bundle; consider using the accompanying project [django-svelte-template](https://github.com/thismatters/django-svelte-template/) as a starting point for your Svelte frontend. It has been modified to work easily alongside this package. If you run into any problems see the [demo project](./demo_project/) within this repo for an example of these two projects working together.
 
 ## Installation
 
@@ -28,6 +28,7 @@ Tell Django where your Svelte JS/CSS bundles will be found (this guide assumes t
 
 ```py
 STATICFILES_DIRS = [
+    # ...
     BASE_DIR.parent / "svelte" / "public" / "build",
 ]
 ```
@@ -67,7 +68,7 @@ Because of the flexibility of CSS many arrangements are possible, but they'll re
 Django templates are highly variable per project, so it is difficult to provide one-sized-fits-all advice in this arena.
 It is likely that one or both of the use cases described below will work for your project.
 
-If your project follows the standard `base.html -> site_base.html -> <page>.html` paradigm then you might find it convenient to also provide a `svelte_base.html` which includes a block (namely `svelte_styles`) in the `head` which will allow individual page templates to inject CSS where it ought to exist.
+If your project follows the standard `base.html -> site_base.html -> <page>.html` paradigm then you might find it convenient to also provide a `svelte_base.html` which includes a block (namely `svelte_styles`) in the `head` which will allow individual page templates to inject CSS where it ought to exist:
 
 ### Monolithic CSS
 
@@ -119,15 +120,11 @@ In addition to the `svelte_base.html` template described above, there are some o
 
 ### Class-based Wrapper View
 
-If you have many components that each get loaded as the main content of their own pages then a reusable class-based view can reduce boilerplate. Subclass the `DjangoSvelteBaseView` class provided in `views.py` to utilize this pattern; be sure to provide your own `get_svelte_props` method so that your component will have data!
+If you have many components that each get loaded as the main content of their own pages then a reusable class-based view can reduce boilerplate. Subclass the `SvelteTemplateView` class provided in `views.py` to utilize this pattern; be sure to provide your own `get_svelte_props` method so that your component will have data!
 
 ### Default Svelte Template
 
 Once you have `svelte_base.html` in place, a subsequent template like `svelte_component.html` is a convenient template for loading in a single component. If you're using the class based view approach describe above then this template should include a `{{ page_title }}` as well as the use of `{% display_svelte_css component_name %}` in the `head` of the template, and `{% display_svelte component_name %}` in its body. See the sample implementation in the demo project.
-
-## Use with `django-compressor`
-
-The setting `DJANGO_SVELTE_OFFLINE_COMPRESOR` will be of service if you're using `django-compressor` (in offline mode). Setting to `True` will cause `django-svelte` to look in the `django-compessor` manifest for the appropriate file URL rather than the default staticfiles.
 
 ## What about the Svelte!?
 
@@ -135,7 +132,7 @@ The Svelte side of things is dealt with in the [django-svelte-template](https://
 
 ## Devops concerns
 
-So, this isn't magic. For this to work you will need to have Node.js _somewhere_ in the mix. Fortunately, you won't need Node.js running in your production environment, but you will need it somewhere in your CI pipeline and probably in your dev environment. For a practical example of what this might look like for a production environment see [django-svelte-demo](https://github.com/thismatters/django-svelte-demo).
+So, this package isn't magic. For this to work you will need to have Node.js _somewhere_ in the mix. Fortunately, you won't need Node.js running in your production environment, but you will need it somewhere in your CI pipeline and probably in your dev environment. For a practical example of what this might look like for a production environment see [django-svelte-demo](https://github.com/thismatters/django-svelte-demo).
 
 ## Shoutouts
 
