@@ -1,5 +1,12 @@
 # Django Svelte
 
+[![PyPI](https://img.shields.io/pypi/v/django-svelte?color=156741&logo=python&logoColor=ffffff&style=for-the-badge)](https://pypi.org/project/django-svelte/)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/thismatters/django-svelte/test.yml?branch=main&color=156741&label=CI&logo=github&style=for-the-badge)](https://github.com/thismatters/django-svelte/actions)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django-svelte?color=156741&logo=python&logoColor=white&style=for-the-badge)](https://pypi.org/project/django-svelte/)
+[![PyPI - Django Version](https://img.shields.io/pypi/djversions/django-svelte?color=156741&logo=django&logoColor=ffffff&style=for-the-badge)](https://pypi.org/project/django-svelte/)
+[![Codecov](https://img.shields.io/codecov/c/github/thismatters/django-svelte?color=156741&logo=codecov&logoColor=ffffff&style=for-the-badge)](https://codecov.io/gh/thismatters/django-svelte)
+
+
 Incorporate a Svelte frontend into a Django site with minimal impact to deployment strategy and authentication story.
 
 ## Scope
