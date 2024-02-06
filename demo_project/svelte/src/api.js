@@ -1,11 +1,9 @@
 /*
  * This is a really basic implementation of a fetch wrapper appropriate
- *  for use with `django-svelte`. You'll be responsible for getting the
- *  following variables set for your myriad environments.
+ *  for use with `django-svelte`. This works for _same origin_ requests,
+ *  where the API backend has the same URL as the frontend. If your setup
+ *  differs then you'll have to build support for that here(ish).
  */
-const base = "localhost:8000";
-const protocol = "http";
-
 
 function getCookie(name) {
   let cookieValue = null;
@@ -32,7 +30,7 @@ async function send({ method, path, data }) {
     opts.headers['X-CSRFToken'] = getCookie('csrftoken');
     opts.body = JSON.stringify(data);
   }
-  let url = `${protocol}://${base}/${path}`;
+  let url = `/${path}`;
   console.log(opts, url);
   return await fetch(url, opts)
     .then(r => r.text())
