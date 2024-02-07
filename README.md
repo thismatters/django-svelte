@@ -36,8 +36,14 @@ Tell Django where your Svelte JS/CSS bundles will be found (this guide assumes t
 ```py
 STATICFILES_DIRS = [
     # ...
-    BASE_DIR.parent / "svelte" / "public" / "build",
+    BASE_DIR.parent / "svelte" / "dist" / "assets",
 ]
+```
+
+If you are using Vite as the bundler for Svelte then you'll also want to tell Django where to find the Vite manifest so that components can be located by hash (Vite does not generate a manifest by default, see the [`build.manifest` option](https://vitejs.dev/config/build-options.html#build-manifest)):
+
+```py
+DJANGO_SVELTE_VITE_MANIFEST_PATH = BASE_DIR.parent / "svelte" / "dist" / ".vite" / "manifest.json" ,
 ```
 
 ## Usage
@@ -136,6 +142,20 @@ Once you have `svelte_base.html` in place, a subsequent template like `svelte_co
 ## What about the Svelte!?
 
 The Svelte side of things is dealt with in the [django-svelte-template](https://github.com/thismatters/django-svelte-template/) repo which you can use as a starting point for your Svelte projects (using `npx degit thismatters/django-svelte-template svelte`). It is configured to output js/css bundles for several different components, but you'll have to do some setup so be sure to read the README.
+
+### New Svelte, who dis?
+
+The newer versions of Svelte are defaulting to SvelteKit, because routing is important stuff. If you're here then you're probably using Django for your routing, so there is no need for SvelteKit. Fortunately, Svelte (sans-Kit) is still available [by installing `vite`](https://svelte.dev/docs/introduction#start-a-new-project-alternatives-to-sveltekit).
+
+The config for outputting multiple bundles got a bit easier from prior versions, and I changed the conventions around entrypoints in the demo project.
+
+Vite, by default and with much difficulty to alter, hashes files and appends the hash to the filename; probably a good practice, but kind of annoying for integrated technologies. Instruct Vite to output a manifest by setting the [`build.manifest` option](https://vitejs.dev/config/build-options.html#build-manifest). The setting `DJANGO_SVELTE_VITE_MANIFEST_PATH` allows you to specify where in the file tree the manifest file lives. After setting this you may go about using the component name (sans hash) in the various templatetags. Alternately, it is possible to prevent Vite from putting hashes into its output filenames but you're on your own for that!
+
+**NOTE:** This manifest arrangement _will_ get bothersome during dev as you have to cause Django to reload the manifest by saving a Django file each time you save a Svelte file (and the bundle hash changes). If **anybody** knows a way to make this more manageable, please please tell me!
+
+Depending on how you have configured your Svelte directory you may have use a setting to specify where your Svelte component "Entrypoints" are located (Entrypoints are the thin javascript files that first import the Svelte component, see [App.js](demo_project/svelte/src/App.js). In the demo project, the entrypoints are directly in the `svelte/src/` directory. If you have put your entrypoints somewhere else then you'll need to say where in the `DJANGO_SVELTE_ENTRYPOIN_PREFIX` setting (value needs to be relative to the `svelte` directory and do include the trailing slash, e.g. the default value `src/`)
+
+Likewise it may be necessary to specify the `DJANGO_SVELTE_VITE_ASSETSDIR` setting. It must match the value used in `vite.config.js` under the key `build.assetsDir`. The default case (value `assets/` ) is covered.
 
 ## Devops concerns
 

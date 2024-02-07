@@ -1,5 +1,5 @@
 <script>
-import { get } from "./api.js";
+import { get } from "../lib/api.js";
 let isAuth = false;
 let didClick = false;
 
@@ -20,3 +20,12 @@ async function handleClick() {
 {:else if didClick}
   <h2>You're not Auth!</h2>
 {/if}
+
+
+<style>
+h1 {
+  text-transform: uppercase;
+  font-size: 4em;
+  font-weight: 100;
+}
+</style>

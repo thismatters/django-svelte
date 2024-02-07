@@ -127,5 +127,9 @@ STATIC_ROOT = BASE_DIR / "site_media" / "static"
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
-    BASE_DIR.parent / "svelte" / "public" / "build",
+    BASE_DIR.parent / "svelte" / "dist" / "assets",
 ]
+
+DJANGO_SVELTE_VITE_MANIFEST_PATH = (
+    BASE_DIR.parent / "svelte" / "dist" / ".vite" / "manifest.json"
+)

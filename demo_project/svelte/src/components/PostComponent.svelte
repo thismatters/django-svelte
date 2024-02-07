@@ -1,5 +1,5 @@
 <script>
-import { post } from "./api.js";
+import { post } from "../lib/api.js";
 
 let fakeInput = "";
 let res = null;

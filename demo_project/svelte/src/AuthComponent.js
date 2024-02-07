@@ -1,4 +1,4 @@
-import AuthComponent from './AuthComponent.svelte';
+import AuthComponent from './components/AuthComponent.svelte';
 
 const authcomponent = new AuthComponent({
 	target: document.getElementById("authcomponent-target"),
