@@ -62,8 +62,9 @@ def display_svelte_css(component_name):
 
 
 @register.inclusion_tag("django_svelte/display_svelte.html")
-def display_svelte(component_name, component_props={"name": "world"}):
+def display_svelte(component_name, component_props=None):
     component_name = de_svelte(component_name)
+    component_props = component_props or {}
 
     return {
         "bundle_url": get_static_file_url(
