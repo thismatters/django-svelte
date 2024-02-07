@@ -17,7 +17,7 @@ This package mainly consists of a templatetags which facilitate the import of JS
 
 This package was originally written during the Svelte 3 days and was bundled by Rollup. Version 0.1.7 and prior were devoted to supporting this stack. Newer versions of this package _ought_ to support that old stack, but they are untested.
 
-Version 0.2.0 and on support Svelte 4 bundled by Vite and demonstrate how to get started with this updated stack
+Version 0.2.0 and on support Svelte 4 bundled by Vite.
 
 ## Installation
 
@@ -72,7 +72,7 @@ You can optionally pass some context (specifically a JSON serializable `dict`) t
 {% display_svelte "MySpecialComponent" component_props %}
 ```
 
-Versions before 0.1.8 required using `.svelte` at the end of the component name, e.g.
+Versions prior to 0.2.0 required using `.svelte` at the end of the component name, e.g.
 
 ```
 {% display_svelte "MySpecialComponent.svelte" component_props %}
@@ -111,6 +111,8 @@ If your project collects all its CSS into a single stylesheet, then you can make
 </html>
 ```
 
+See also the Vite [build option `cssCodeSplit`](https://vitejs.dev/config/build-options.html#build-csscodesplit)
+
 ### Per Component CSS
 
 If you include `style` tags in your individual Svelte components then you'll want to include the per component stylesheets when you display your component:
@@ -139,15 +141,15 @@ In addition to the `svelte_base.html` template described above, there are some o
 
 ### Class-based Wrapper View
 
-If you have many components that each get loaded as the main content of their own pages then a reusable class-based view can reduce boilerplate. Subclass the `SvelteTemplateView` class provided in `views.py` to utilize this pattern; be sure to provide your own `get_svelte_props` method so that your component will have data!
+If you have many components that each get loaded as the main content of their own pages then a reusable class-based view can reduce boilerplate. Subclass the `SvelteTemplateView` class provided in `views.py` to utilize this pattern; be sure to provide your own `get_svelte_props` method so that your component will have data! See the [sample implementation](demo_project/django_svelte_demo/django_svelte_demo/views.py)
 
 ### Default Svelte Template
 
-Once you have `svelte_base.html` in place, a subsequent template like `svelte_component.html` is a convenient template for loading in a single component. If you're using the class based view approach describe above then this template should include a `{{ page_title }}` as well as the use of `{% display_svelte_css component_name %}` in the `head` of the template, and `{% display_svelte component_name %}` in its body. See the sample implementation in the demo project.
+Once you have `svelte_base.html` in place, a subsequent template like `svelte_component.html` is a convenient template for loading in a single component. If you're using the class based view approach describe above then this template should include a `{{ page_title }}` as well as the use of `{% display_svelte_css component_name %}` in the `head` of the template, and `{% display_svelte component_name %}` in its body. See the [sample implementation](demo_project/django_svelte_demo/django_svelte_demo/templates/svelte_component.html) in the demo project.
 
 ## What about Svelte!?
 
-The Svelte side of things is demonstrated in the [Svelte demo project](demo_project/svelte/) which shows how a default Vite+Svelte project can be altered to output js/css bundles useful for this package. It is configured to output js/css bundles for several different components which can be imported independently.
+The Svelte side of things is demonstrated in the [Svelte demo project](demo_project/svelte/) which shows how a default Vite+Svelte project can be altered to output JS/CSS bundles useful for this package. It is configured to output JS/CSS bundles for several different components which can be imported independently.
 
 ### New Svelte, who dis?
 
