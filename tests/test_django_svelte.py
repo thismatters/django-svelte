@@ -112,3 +112,21 @@ class TestGetHashedFilename:
     )
     def test_nonentry(self):
         assert get_hashed_filename(component_name="App", file_type="js") is None
+
+    @override_settings(
+        DJANGO_SVELTE__VITE_MANIFEST={
+            "src/App.js": {"file": "bassets/App-asdfsafd.js"}
+        },
+        DJANGO_SVELTE_VITE_ASSETSDIR="bassets/",
+    )
+    def test_different_assetsdir(self):
+        assert get_hashed_filename(component_name="App", file_type="js") is None
+
+    @override_settings(
+        DJANGO_SVELTE__VITE_MANIFEST={
+            "src/entrypoints/App.js": {"file": "assets/App-asdfsafd.js"}
+        },
+        DJANGO_SVELTE_ENTRYPOINT_PREFIX="src/entrypoints/",
+    )
+    def test_different_prefix(self):
+        assert get_hashed_filename(component_name="App", file_type="js") is None

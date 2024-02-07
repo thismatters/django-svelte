@@ -1,8 +1,7 @@
 from django import template
+from django.conf import settings
 from django.contrib.staticfiles import finders
 from django.contrib.staticfiles.storage import staticfiles_storage
-from django.conf import settings
-
 
 register = template.Library()
 
@@ -23,7 +22,8 @@ def get_hashed_filename(*, component_name, file_type):
         filename = _css[0]
     # strip the vite build.assetsDir from the filename
     if filename.startswith(settings.DJANGO_SVELTE_VITE_ASSETSDIR):
-        filename = filename[len(settings.DJANGO_SVELTE_VITE_ASSETSDIR) :]
+        _len = len(settings.DJANGO_SVELTE_VITE_ASSETSDIR)
+        filename = filename[_len:]
     return filename
 
 
