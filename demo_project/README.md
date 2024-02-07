@@ -7,3 +7,11 @@ Pay special attention to the `Dockerfile`, `docker-compose.yml`, and `gitlab-ci.
 ## Disclaimer
 
 This demo probably will run fine, but you're on your own getting it to run.
+
+## Django Project
+
+What you'll find is a relatively vanilla Django project, created in the standard `django start-project` way. To it is added Django Rest Framework and this package, `django-svelte`, some templates and views along with the necessary serializers and api views.
+
+## Svelte Project
+
+What you'll find is a relatively vanilla Vite+Svelte project, with only a few lines added to the Vite config file. See the [readme within the `svelte` project](svelte/README.md).

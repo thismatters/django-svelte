@@ -11,7 +11,7 @@ build-svelte:
     - npm run build
   artifacts:
     paths:
-      - svelte/public/build/
+      - svelte/dist/
 
 build-app:
   stage: build

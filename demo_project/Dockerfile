@@ -12,7 +12,7 @@ COPY django_svelte_demo /app/src
 WORKDIR /app/src
 
 # Get the frontend component staticfiles
-COPY svelte/public/build /app/svelte/public/build
+COPY svelte/dist /app/svelte/dist
 
 # Catalog the staticfiles. This is needed in production, but in the dev
 #  environment the svelte staticfiles will be drawn from

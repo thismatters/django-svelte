@@ -9,7 +9,7 @@ services:
       - "8000:8000"
     volumes:
       - ./django_svelte_demo:/app/src
-      - ./svelte/public/build/:/app/svelte/public/build/
+      - ./svelte/dist:/app/svelte/dist/
     depends_on:
       - node
     networks:
