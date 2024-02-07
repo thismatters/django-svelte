@@ -1,0 +1,16 @@
+[tool.black]
+exclude = 'migrations/'
+
+[tool.isort]
+profile = "black"
+extend_skip_glob = ["*/migrations"]
+
+[tool.flake8]
+exclude = ["migrations"]
+ignore = ["E402", "W503"]
+max-line-length = 100
+max-complexity = 10
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["demo_project/django_svelte_demo"]

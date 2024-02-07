@@ -1,26 +1,76 @@
-from os import path
 from django import template
+from django.conf import settings
+from django.contrib.staticfiles import finders
 from django.contrib.staticfiles.storage import staticfiles_storage
 
 register = template.Library()
 
-@register.inclusion_tag("display_svelte.html")
-def display_svelte(component, component_props={"name": "world"}):
-    if not component.endswith(".svelte"):
-        raise ValueError("component name should end with '.svelte'")
 
-    app_name = component[:-7]
+def get_hashed_filename(*, component_name, file_type):
+    key = f"{settings.DJANGO_SVELTE_ENTRYPOINT_PREFIX}{component_name}.js"
+    entry = settings.DJANGO_SVELTE__VITE_MANIFEST.get(key)
+    if entry is None:
+        return None
+    if not entry.get("isEntry", False):
+        return None
+    if file_type == "js":
+        filename = entry["file"]
+    if file_type == "css":
+        _css = entry.get("css", [])
+        if not _css:
+            return None
+        filename = _css[0]
+    # strip the vite build.assetsDir from the filename
+    if filename.startswith(settings.DJANGO_SVELTE_VITE_ASSETSDIR):
+        _len = len(settings.DJANGO_SVELTE_VITE_ASSETSDIR)
+        filename = filename[_len:]
+    return filename
 
-    context = {
-        "bundle_url": staticfiles_storage.url(f"{app_name}.js"),
-        "css_bundle_url": staticfiles_storage.url(f"{app_name}.css"),
-        "element_id": f"{app_name.lower()}-target",
-        "props_name": f"{app_name.lower()}-props",
-        "app_name": app_name,
-        "props": component_props,
+
+def get_static_file_url(*, component_name, file_type="js"):
+    filename = None
+    if settings.DJANGO_SVELTE__VITE_MANIFEST is not None:
+        filename = get_hashed_filename(
+            component_name=component_name, file_type=file_type
+        )
+    else:
+        filename = f"{component_name}.{file_type}"
+    if filename is None:
+        return None
+    static_file = finders.find(filename)
+    if static_file is None:
+        return None
+    return staticfiles_storage.url(filename)
+
+
+def de_svelte(name):
+    """Removes the .svelte suffix from a name, if present"""
+    if name.endswith(".svelte"):
+        return name[:-7]
+    return name
+
+
+@register.inclusion_tag("django_svelte/display_svelte_css.html")
+def display_svelte_css(component_name):
+    component_name = de_svelte(component_name)
+
+    return {
+        "css_bundle_url": get_static_file_url(
+            component_name=component_name, file_type="css"
+        ),
     }
 
-    if not path.exists(context["css_bundle_url"]):
-        context.pop("css_bundle_url")
 
-    return context
+@register.inclusion_tag("django_svelte/display_svelte.html")
+def display_svelte(component_name, component_props=None):
+    component_name = de_svelte(component_name)
+    component_props = component_props or {}
+
+    return {
+        "bundle_url": get_static_file_url(
+            component_name=component_name, file_type="js"
+        ),
+        "element_id": f"{component_name.lower()}-target",
+        "props_name": f"{component_name.lower()}-props",
+        "props": component_props,
+    }

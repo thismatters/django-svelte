@@ -1,0 +1,10 @@
+{% comment %}
+Create a target element
+load the compiled bundle
+instantiate the bundle with the json context
+{% endcomment %}
+
+<div id="{{ element_id }}"></div>
+
+{{ props|json_script:props_name }}
+<script type="module" src="{{ bundle_url }}"></script>

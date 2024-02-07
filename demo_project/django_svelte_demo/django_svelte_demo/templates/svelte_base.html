@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+  {{ block.super }}
+  {% block svelte_styles %}
+    <link rel="stylesheet" href="{% static 'global.css' %}" />
+  {% endblock %}
+{% endblock %}

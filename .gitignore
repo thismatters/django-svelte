@@ -1,0 +1,11 @@
+**/__pycache__/*
+**/node_modules/*
+*.pyc
+*.sqlite3
+*.log
+*.final
+*.egg-info/*
+
+.coverage
+coverage.xml
+.tox
