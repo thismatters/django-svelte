@@ -1,0 +1,41 @@
+{
+  "src/App.js": {
+    "css": [
+      "assets/App-EY9ns7CU.css"
+    ],
+    "file": "assets/App-ivDvN-Hb.js",
+    "imports": [
+      "_index-XiwIJ_QN.js"
+    ],
+    "isEntry": true,
+    "src": "src/App.js"
+  },
+  "src/AuthComponent.js": {
+    "css": [
+      "assets/AuthComponent--tKiZTRp.css"
+    ],
+    "file": "assets/AuthComponent-ew7efgSP.js",
+    "imports": [
+      "_index-XiwIJ_QN.js",
+      "_api-S8e2CqEv.js"
+    ],
+    "isEntry": true,
+    "src": "src/AuthComponent.js"
+  },
+  "src/NoCSS.js": {
+    "file": "assets/NoCSS-w0j-em_E.js",
+    "imports": [
+      "_index-XiwIJ_QN.js",
+      "_api-S8e2CqEv.js"
+    ],
+    "isEntry": true,
+    "src": "src/PostComponent.js"
+  },
+  "otherPrefix/FakeComponent.js": {
+    "file": "otherAssetDir/FakeComponent-asdfasdf.js",
+    "isEntry": true,
+    "css": [
+        "otherAssetDir/FakeComponent-asdfsdaf.css",
+    ]
+  }
+}

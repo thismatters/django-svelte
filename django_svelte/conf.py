@@ -42,6 +42,8 @@ class DjangoSvelteAppConf(AppConf):
         _path = self.configured_data["VITE_MANIFEST_PATH"]
         if _path is None:
             return self.configured_data
+        if not _path.exists():
+            raise ImproperlyConfigured(f"Vite manifest must exist at path! {_path}")
         with open(_path) as manifest:
             self.configured_data["_VITE_MANIFEST"] = json.load(manifest)
         print(self.configured_data["_VITE_MANIFEST"])

@@ -28,6 +28,7 @@ def get_hashed_filename(*, component_name, file_type):
 
 
 def get_static_file_url(*, component_name, file_type="js"):
+    filename = None
     if settings.DJANGO_SVELTE__VITE_MANIFEST is not None:
         filename = get_hashed_filename(
             component_name=component_name, file_type=file_type

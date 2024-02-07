@@ -80,7 +80,7 @@ WSGI_APPLICATION = "django_svelte_demo.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": BASE_DIR.parent / "db.sqlite3",
     }
 }
 
@@ -123,13 +123,13 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATIC_ROOT = BASE_DIR / "site_media" / "static"
+STATIC_ROOT = BASE_DIR.parent / "site_media" / "static"
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    BASE_DIR.parent / "svelte" / "dist" / "assets",
+    BASE_DIR.parent / "static",
+    BASE_DIR.parent.parent / "svelte" / "dist" / "assets",
 ]
 
 DJANGO_SVELTE_VITE_MANIFEST_PATH = (
-    BASE_DIR.parent / "svelte" / "dist" / ".vite" / "manifest.json"
+    BASE_DIR.parent.parent / "svelte" / "dist" / ".vite" / "manifest.json"
 )
