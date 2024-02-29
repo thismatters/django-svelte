@@ -1,5 +1,11 @@
 # Changelog
 
+## Version 0.2.1
+### Added
+* Recursive lookup of CSS bundles in vite manifest.
+* Support for displaying several CSS files per component.
+
+
 ## Version 0.2.0
 ### Added
 * This changelog!
